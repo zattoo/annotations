@@ -1,8 +1,4 @@
 
-sheetal G.C <sheetalgcin@gmail.com>
-Thu, May 9, 8:23 PM (11 hours ago)
-to me
-
 import os
 import datetime
 import json
