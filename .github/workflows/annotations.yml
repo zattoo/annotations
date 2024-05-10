@@ -1,0 +1,35 @@
+name: Release Details
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  print_release_details:
+    runs-on: ubuntu-latest
+    env:
+      RELEASE_TAG: ${{ github.event.release.tag_name }}
+      RELEASE_DATE: ${{ github.event.release.published_at }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+       
+      - name: Print Release Details
+        run: |
+           echo "export RELEASE_TAG=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
+           echo "export RELEASE_DATE=${{ github.event.release.published_at }}" >> $GITHUB_ENV
+     
+      -  name: Set up Python
+         uses: actions/setup-python@v5
+         with:
+          python-version: '3.x'
+         
+      -   name: Install dependencies
+          run: |
+            python3 -m pip install --upgrade pip
+            pip install requests
+           
+      - name: Run Python script
+        working-directory: Release
+        run:
+          python3 releaseInfo.py
