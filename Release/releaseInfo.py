@@ -22,7 +22,7 @@ event["version"] = str(release)
 annotations["events"]= event
 
 print(annotations)
-reponse = requests.post(url, json=annotations)
+response = requests.post(url, json=annotations)
 
 if response.status_code == 200:
         print("Data sent successfully to the endpoint.")
