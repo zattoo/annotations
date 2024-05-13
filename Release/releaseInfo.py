@@ -27,7 +27,7 @@ def send_telemetry_annotation():
         # Endpoint URL for both staging and production
         # url_production = "https://events.zahs.tv/pt_annotations"
         url_staging  =  "https://events-staging.zahs.tv/pt_annotations"
-        event = {"date": None, "component": "", "type": "", "tenant_id": None, "version": ""}
+        event = {}
 
         # Environment variables
         dateInfo = os.environ.get('date')
