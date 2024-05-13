@@ -1,8 +1,9 @@
 name: Release Details
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
 
 jobs:
   print_release_details:
@@ -18,12 +19,12 @@ jobs:
        
       - name: Print Release Details
         run: |
-           echo "export RELEASE_TAG=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
-           echo "export RELEASE_DATE=${{ github.event.release.published_at }}" >> $GITHUB_ENV
-           echo "export RELEASE_COMPONENT=${{ github.event.repository.name }}" >> $GITHUB_ENV
+           echo "export RELEASE_TAG = ${{ github.event.release.tag_name }}" >> $GITHUB_ENV
+           echo "export RELEASE_DATE = ${{ github.event.release.published_at }}" >> $GITHUB_ENV
+           echo "export RELEASE_COMPONENT = ${{ github.event.repository.name }}" >> $GITHUB_ENV
 
       -  name: Set up Python
-         uses: zattoo/testRelease@v1
+         uses: zattoo/testRelease@main
          with:
           component: ${{env.RELEASE_COMPONENT}}
           date: ${{env.RELEASE_DATE}}
