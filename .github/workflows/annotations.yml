@@ -22,7 +22,7 @@ jobs:
            echo "export RELEASE_COMPONENT=${{ github.event.repository.name }}" >> $GITHUB_ENV
 
       -  name: Set up Python
-         uses: actions/Telemetry-Annotation
+         uses: ./.github/actions/Telmetry-Annotation
          with:
           COMPONENT: ${{env.RELEASE_COMPONENT}}
           DATE: ${{env.RELEASE_DATE}}
