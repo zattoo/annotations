@@ -11,6 +11,7 @@ jobs:
       RELEASE_TAG: ${{ github.event.release.tag_name }}
       RELEASE_DATE: ${{ github.event.release.published_at }}
       RELEASE_COMPONENT: ${{ github.event.repository.name }}
+      
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
