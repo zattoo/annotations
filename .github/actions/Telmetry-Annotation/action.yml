@@ -25,11 +25,19 @@ runs:
             python-version: '3.x'
 
       - name: Install dependencies
+        shell: bash
         run: |
           python3 -m pip install --upgrade pip
           pip install requests
 
       - name: Run Python script
         working-directory: Release
+        shell: bash
+        env:
+        COMPONENT: ${{ inputs.component }}
+        DATE: ${{ inputs.date }}
+        VERSION: ${{ inputs.version }}
+        TYPE: ${{ inputs.type }}
+        TENANT_ID: ${{ inputs.tenantId }}
         run:
           python3 releaseInfo.py
