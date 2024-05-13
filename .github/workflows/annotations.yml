@@ -24,9 +24,9 @@ jobs:
       -  name: Set up Python
          uses: ./.github/actions/Telmetry-Annotation
          with:
-          COMPONENT: ${{env.RELEASE_COMPONENT}}
-          DATE: ${{env.RELEASE_DATE}}
-          VERSION: ${{env.RELEASE_TAG}}
-          TYPE: "Release"
-          TENANT_ID: 1
+          component: ${{env.RELEASE_COMPONENT}}
+          date: ${{env.RELEASE_DATE}}
+          version: ${{env.RELEASE_TAG}}
+          type: "Release"
+          tenantId: 1
 
