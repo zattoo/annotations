@@ -1,0 +1,35 @@
+name: Telemetry Annotation
+description: Fetch the release details from the component
+inputs:
+  component:
+    description: "Name of the component"
+  date:
+    description: "Release Published date"
+    required: true
+  version:
+    description: "Release Version"
+    required: true
+  type:
+    description: "Release Type"
+    required: true
+  tenantId:
+    description: "TenantId"
+    required: true    
+
+runs:
+  using: composite
+  steps:
+      -  name: Set up Python
+         uses: actions/setup-python@v5
+         with:
+            python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run Python script
+        working-directory: Release
+        run:
+          python3 releaseInfo.py

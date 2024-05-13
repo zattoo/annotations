@@ -8,17 +8,16 @@ url = "https://events.zahs.tv/pt_annotations"
 event={"date": None, "component": "", "type": "", "tenant_id": 1, "version": ""}
 annotations = {"events": [{}], "v": 1}
 # Access environment variables
-release = os.environ.get('RELEASE_TAG')
-dateInfo = os.environ.get('RELEASE_DATE')
+dateInfo = os.environ.get('DATE')
 datetime_obj = datetime.datetime.fromisoformat(dateInfo)
 # Convert datetime object to Unix epoch time
 epoch_time = int(datetime_obj.timestamp())
 
 event["date"] = int(epoch_time)
-event["component"] = "zolagus"
-event["type"]  = "release"
-event["tenant_id"] = 1
-event["version"] = str(release)
+event["component"] = os.environ.get('COMPONENT')
+event["type"]  = os.environ.get('TYPE')
+event["tenant_id"] = int(os.environ.get('TENANT_ID'))
+event["version"] = str(os.environ.get('VERSION'))
 annotations["events"]= event
 
 # Create a new dictionary with the desired format

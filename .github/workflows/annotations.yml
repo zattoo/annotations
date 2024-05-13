@@ -10,6 +10,7 @@ jobs:
     env:
       RELEASE_TAG: ${{ github.event.release.tag_name }}
       RELEASE_DATE: ${{ github.event.release.published_at }}
+      RELEASE_COMPONENT: ${{ github.event.repository.name }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -18,18 +19,14 @@ jobs:
         run: |
            echo "export RELEASE_TAG=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
            echo "export RELEASE_DATE=${{ github.event.release.published_at }}" >> $GITHUB_ENV
-     
+           echo "export RELEASE_COMPONENT=${{ github.event.repository.name }}" >> $GITHUB_ENV
+
       -  name: Set up Python
-         uses: actions/setup-python@v5
+         uses: actions/Telemetry-Annotation
          with:
-          python-version: '3.x'
-         
-      -   name: Install dependencies
-          run: |
-            python3 -m pip install --upgrade pip
-            pip install requests
-           
-      - name: Run Python script
-        working-directory: Release
-        run:
-          python3 releaseInfo.py
+          COMPONENT: ${{env.RELEASE_COMPONENT}}
+          DATE: ${{env.RELEASE_DATE}}
+          VERSION: ${{env.RELEASE_TAG}}
+          TYPE: "Release"
+          TENANT_ID: 1
+
