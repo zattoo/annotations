@@ -30,4 +30,3 @@ jobs:
           version: ${{env.RELEASE_TAG}}
           type: "Release"
           tenantId: 1
-

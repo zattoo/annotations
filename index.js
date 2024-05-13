@@ -1,0 +1,1 @@
+console.log('Test Release Action is running!');
