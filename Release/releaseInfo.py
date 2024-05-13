@@ -30,16 +30,16 @@ def send_telemetry_annotation():
         event = {"date": None, "component": "", "type": "", "tenant_id": None, "version": ""}
 
         # Environment variables
-        dateInfo = os.environ.get('DATE')
+        dateInfo = os.environ.get('date')
         datetime_obj = datetime.datetime.fromisoformat(dateInfo)
 
         # Convert datetime object to Unix epoch time and in milliseconds
         epoch_time_ms = int(datetime_obj.timestamp())
         event["date"] = int(epoch_time_ms * 1000)
-        event["component"] = os.environ.get('COMPONENT')
-        event["type"]  = os.environ.get('TYPE')
-        event["tenant_id"] = int(os.environ.get('TENANT_ID'))
-        event["version"] = str(os.environ.get('VERSION'))
+        event["component"] = os.environ.get('component')
+        event["type"]  = os.environ.get('type')
+        event["tenant_id"] = int(os.environ.get('tenantId'))
+        event["version"] = str(os.environ.get('version'))
 
         # Create annotations dictionary
         annotations = {"events": [event], "v": 1}

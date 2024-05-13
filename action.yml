@@ -34,9 +34,9 @@ runs:
       working-directory: Release
       shell: bash
       env:
-        COMPONENT: ${{ inputs.component }}
-        DATE: ${{ inputs.date }}
-        VERSION: ${{ inputs.version }}
-        TYPE: ${{ inputs.type }}
-        TENANT_ID: ${{ inputs.tenantId }}
+        component: ${{ inputs.component }}
+        date: ${{ inputs.date }}
+        version: ${{ inputs.version }}
+        type: ${{ inputs.type }}
+        tenantId: ${{ inputs.tenantId }}
       run: python3 releaseInfo.py
