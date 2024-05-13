@@ -24,33 +24,33 @@ def send_event_to_endpoint(url, event):
         return False
 
 def send_telemetry_annotation():
-    # Endpoint URL for both staging and production
-   # url_production = "https://events.zahs.tv/pt_annotations"
-    url_staging  =  "https://events-staging.zahs.tv/pt_annotations"
-     event={"date": None, "component": "", "type": "", "tenant_id": None, "version": ""}
+        # Endpoint URL for both staging and production
+        # url_production = "https://events.zahs.tv/pt_annotations"
+        url_staging  =  "https://events-staging.zahs.tv/pt_annotations"
+        event = {"date": None, "component": "", "type": "", "tenant_id": None, "version": ""}
 
-    # Environment variables
-    dateInfo = os.environ.get('DATE')
-    datetime_obj = datetime.datetime.fromisoformat(dateInfo)
-    # Convert datetime object to Unix epoch time
-    epoch_time = int(datetime_obj.timestamp())
+        # Environment variables
+        dateInfo = os.environ.get('DATE')
+        datetime_obj = datetime.datetime.fromisoformat(dateInfo)
+        # Convert datetime object to Unix epoch time
+        epoch_time = int(datetime_obj.timestamp())
 
-    # Convert datetime object to Unix epoch time and in milliseconds
-    epoch_time_ms = int(datetime_obj.timestamp() * 1000)
-    event["date"] = int(epoch_time)
-    event["component"] = os.environ.get('COMPONENT')
-    event["type"]  = os.environ.get('TYPE')
-    event["tenant_id"] = int(os.environ.get('TENANT_ID'))
-    event["version"] = str(os.environ.get('VERSION'))
-    annotations["events"]= event
+        # Convert datetime object to Unix epoch time and in milliseconds
+        epoch_time_ms = int(datetime_obj.timestamp() * 1000)
+        event["date"] = int(epoch_time)
+        event["component"] = os.environ.get('COMPONENT')
+        event["type"]  = os.environ.get('TYPE')
+        event["tenant_id"] = int(os.environ.get('TENANT_ID'))
+        event["version"] = str(os.environ.get('VERSION'))
+        annotations["events"] = event
 
-    # Create annotations dictionary
-    annotations = {"events": [event], "v": 1}
+        # Create annotations dictionary
+        annotations = {"events": [event], "v": 1}
 
-    # Send data to the endpoint
-   # send_event_to_endpoint(url_production, annotations)
-   # time.sleep(90)
-    send_event_to_endpoint(url_staging, annotations)
+        # Send data to the endpoint
+        # send_event_to_endpoint(url_production, annotations)
+        # time.sleep(90)
+        send_event_to_endpoint(url_staging, annotations)
 
 
 if __name__ == "__main__":
