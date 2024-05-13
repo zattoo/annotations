@@ -42,7 +42,6 @@ def send_telemetry_annotation():
         event["type"]  = os.environ.get('TYPE')
         event["tenant_id"] = int(os.environ.get('TENANT_ID'))
         event["version"] = str(os.environ.get('VERSION'))
-        annotations["events"] = event
 
         # Create annotations dictionary
         annotations = {"events": [event], "v": 1}
