@@ -32,12 +32,10 @@ def send_telemetry_annotation():
         # Environment variables
         dateInfo = os.environ.get('DATE')
         datetime_obj = datetime.datetime.fromisoformat(dateInfo)
-        # Convert datetime object to Unix epoch time
-        epoch_time = int(datetime_obj.timestamp())
 
         # Convert datetime object to Unix epoch time and in milliseconds
         epoch_time_ms = int(datetime_obj.timestamp() * 1000)
-        event["date"] = int(epoch_time)
+        event["date"] = int(epoch_time_ms)
         event["component"] = os.environ.get('COMPONENT')
         event["type"]  = os.environ.get('TYPE')
         event["tenant_id"] = int(os.environ.get('TENANT_ID'))
