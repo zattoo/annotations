@@ -18,8 +18,8 @@ jobs:
        
       - name: Set the environment variables
         run: |
-           echo "export URL_PRODUCTION=https://events.zahs.tv/pt_annotations"  >> $GITHUB_ENV
-           echo "export URL_STAGING=https://events-staging.zahs.tv/pt_annotations" >> $GITHUB_ENV
+           echo "URL_PRODUCTION=https://events.zahs.tv/pt_annotations"  >> $GITHUB_ENV
+           echo "URL_STAGING=https://events-staging.zahs.tv/pt_annotations" >> $GITHUB_ENV
 
       - name: Print Environment Variables
         run: |
