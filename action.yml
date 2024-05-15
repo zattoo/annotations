@@ -14,6 +14,12 @@ inputs:
     required: true
   tenantId:
     description: "TenantId"
+    required: true
+  urlProduction:
+    description: "urlProduction"
+    required: true
+  urlStaging:
+    description: "urlStaging"
     required: true    
 
 runs:
@@ -39,4 +45,6 @@ runs:
         version: ${{ inputs.version }}
         type: ${{ inputs.type }}
         tenantId: ${{ inputs.tenantId }}
+        urlProductin: ${{ inputs.urlProduction }}
+        urlStaging: ${{ inputs.urlStaging }}
       run: python3 annotations.py
