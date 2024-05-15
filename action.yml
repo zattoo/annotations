@@ -37,7 +37,6 @@ runs:
         pip install requests
 
     - name: Send Release details to endpoints
-      working-directory: TelemetryAnnotations
       shell: bash
       env:
         component: ${{ inputs.component }}
