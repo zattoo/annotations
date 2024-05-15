@@ -1,39 +1,54 @@
-Publish
+**Annotations**
+
 GitHub Action for forwarding component release details to endpoints
 
-Inputs
-component
+**Inputs**
+
+**component**
+
 string
 
 Required. Name of the component name
 
-date
+**date**
+
 string
 
 Required. Release Published date 
 
-version
+**version**
+
 string
+
 Required. Release Version 
 
-type
-string 
+**type**
+
+string
+
 Required. Release Type
 
-tenantId
+**tenantId**
+
 int
+
 Required. TenantId
 
-urlProduction
+**urlProduction**
+
 string
+
 Required. Provide the endpoints for Production
 
-urlStaging
+**urlStaging**
+
 string
+
 Required. Provide the endpoints for Staging
 
 
-Usage Example
+**Usage Example**
+
 name: annotations
 jobs:
     name: Package
