@@ -1,57 +1,57 @@
-**Annotations**
+# Annotations
 
-GitHub Action for forwarding component release details to endpoints
 
-**Inputs**
+A GitHub Action that can be used across multiple repositories, for forwarding component release details to Telemetry.
 
-**component**
+
+## Inputs
+
+**`component`**
 
 string
 
 Required. Name of the component name
 
-**date**
+**`date`**
 
 string
 
 Required. Release Published date 
 
-**version**
+**`version`**
 
 string
 
 Required. Release Version 
 
-**type**
+**`type`**
 
 string
 
 Required. Release Type
 
-**tenantId**
+**`tenantId`**
 
 int
 
 Required. TenantId
 
-**urlProduction**
+**`urlProduction`**
 
 string
 
-Required. Provide the endpoints for Production
+Required. Provide the endpoints for Zolagus Production
 
-**urlStaging**
+**`urlStaging`**
 
 string
 
-Required. Provide the endpoints for Staging
+Required. Provide the endpoints for Zolagus Staging
 
 
-**Usage Example**
-
-name: annotations
-jobs:
-    name: Package
+**`Usage Example`**
+```yaml
+    name: annotations
     steps:
      -   name: Checkout code
          uses: actions/checkout@v2
@@ -65,3 +65,4 @@ jobs:
           tenantId: ${{env_TenantId}}
           urlProduction: ${{env.URL_PRODUCTION}}
           urlStaging: ${{env.URL_STAGING}}
+```
