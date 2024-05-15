@@ -49,6 +49,5 @@ if __name__ == "__main__":
     # Endpoint URL for both staging and production
     URL_PRODUCTION = os.environ.get('urlProduction')
     URL_STAGING = os.environ.get('urlStaging')
-    print(URL_PRODUCTION,URL_STAGING)
     annotationToendpoints = TelemetryAnnotation(URL_PRODUCTION, URL_STAGING)
     annotationToendpoints.send_telemetry_annotation()
