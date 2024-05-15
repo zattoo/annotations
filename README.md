@@ -53,8 +53,7 @@ Required. Provide the endpoints for Zolagus Staging
 ```yaml
     name: annotations
     steps:
-     -   name: Checkout code
-         uses: actions/checkout@v2
+    
      -   name: Call the Action to send the release to endpoints
          uses: zattoo/annotations@main
          with:
