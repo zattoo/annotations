@@ -1,34 +1,29 @@
+import requests
 import os
 import datetime
-import json
-import requests
+import logging
 
-def send_event_to_endpoint(url, event):
-    """
-    Send event data to the specified endpoint.
+class TelemetryAnnotation:
+    def __init__(self, url_production, url_staging):
+        self.url_production = url_production
+        self.url_staging = url_staging
+        self.logger = logging.getLogger(__name__)
 
-    Args:
-        url (str): The URL of the endpoint.
-        event (dict): Dictionary containing event data.
+    def send_event_to_endpoint(self, url, annotations):
+        """
+        Send event data to the specified endpoint.
+        """
+        try:
+            response = requests.post(url, json=annotations)
+            response.raise_for_status()  
+            self.logger.info("Annotations are sent to the endpoint successfully.")
+            return True
+        except requests.exceptions.RequestException as e:
+            self.logger.info("Failed to send Annotations. Error:", e)
+            return False
 
-    Returns:
-        bool: True if the data is sent successfully, False otherwise.
-    """
-    try:
-        response = requests.post(url, json=event)
-        response.raise_for_status()  # Raise exception for bad response status
-        print("Data sent successfully to the endpoint.")
-        return True
-    except requests.exceptions.RequestException as e:
-        print("Failed to send data. Error:", e)
-        return False
-
-def send_telemetry_annotation():
-        # Endpoint URL for both staging and production
-        # url_production = "https://events.zahs.tv/pt_annotations"
-        url_staging  =  "https://events-staging.zahs.tv/pt_annotations"
+    def send_telemetry_annotation(self):
         event = {}
-
         # Environment variables
         dateInfo = os.environ.get('date')
         datetime_obj = datetime.datetime.fromisoformat(dateInfo)
@@ -37,18 +32,23 @@ def send_telemetry_annotation():
         epoch_time_ms = int(datetime_obj.timestamp())
         event["date"] = int(epoch_time_ms * 1000)
         event["component"] = os.environ.get('component')
-        event["type"]  = os.environ.get('type')
+        event["type"] = os.environ.get('type')
         event["tenant_id"] = int(os.environ.get('tenantId'))
         event["version"] = str(os.environ.get('version'))
 
         # Create annotations dictionary
         annotations = {"events": [event], "v": 1}
 
-        # Send data to the endpoint
-        # send_event_to_endpoint(url_production, annotations)
-        # time.sleep(90)
-        send_event_to_endpoint(url_staging, annotations)
-
+        # Send data to the endpoints
+        self.send_event_to_endpoint(self.url_production, annotations)
+        self.send_event_to_endpoint(self.url_staging, annotations)
 
 if __name__ == "__main__":
-    send_telemetry_annotation()
+    
+    logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
+    # Endpoint URL for both staging and production
+    URL_PRODUCTION = os.environ.get('urlProduction')
+    URL_STAGING = os.environ.get('urlStaging')
+
+    sender = TelemetryAnnotation(URL_PRODUCTION, URL_STAGING)
+    sender.send_telemetry_annotation()

@@ -21,6 +21,8 @@ jobs:
            echo "export RELEASE_TAG = ${{ github.event.release.tag_name }}" >> $GITHUB_ENV
            echo "export RELEASE_DATE = ${{ github.event.release.published_at }}" >> $GITHUB_ENV
            echo "export RELEASE_COMPONENT = ${{ github.event.repository.name }}" >> $GITHUB_ENV
+           echo "export URL_PRODUCTION = https://events.zahs.tv/pt_annotations"  >> $GITHUB_ENV
+           echo "export URL_STAGING = https://events-staging.zahs.tv/pt_annotations" >> $GITHUB_ENV
 
       -  name: Set up Python
          uses: zattoo/testRelease@main

@@ -30,8 +30,8 @@ runs:
         python3 -m pip install --upgrade pip
         pip install requests
 
-    - name: Run Python script
-      working-directory: Release
+    - name: Send Release details to endpoints
+      working-directory: TelemetryAnnotations
       shell: bash
       env:
         component: ${{ inputs.component }}
@@ -39,4 +39,4 @@ runs:
         version: ${{ inputs.version }}
         type: ${{ inputs.type }}
         tenantId: ${{ inputs.tenantId }}
-      run: python3 releaseInfo.py
+        run: python3 annotations.py
