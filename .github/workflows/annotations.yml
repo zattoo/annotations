@@ -16,10 +16,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
        
-      - name: Print Release Details
+      - name: Set the environment variables
         run: |
            echo "export URL_PRODUCTION=https://events.zahs.tv/pt_annotations"  >> $GITHUB_ENV
            echo "export URL_STAGING=https://events-staging.zahs.tv/pt_annotations" >> $GITHUB_ENV
+
+      - name: Print Environment Variables
+        run: |
+          echo "URL_PRODUCTION: $URL_PRODUCTION"
+          echo "URL_STAGING: $URL_STAGING"
+          echo "URL_PRODUCTION:" ${{env.URL_PRODUCTION}}
+          echo "URL_STAGING:"" ${{env.URL_STAGING}} 
 
       -  name: Set up Python
          uses: zattoo/testRelease@main
