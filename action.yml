@@ -39,4 +39,4 @@ runs:
         version: ${{ inputs.version }}
         type: ${{ inputs.type }}
         tenantId: ${{ inputs.tenantId }}
-        run: python3 annotations.py
+      run: python3 annotations.py
