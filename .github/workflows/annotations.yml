@@ -21,7 +21,14 @@ jobs:
            echo "URL_PRODUCTION=https://events.zahs.tv/pt_annotations"  >> $GITHUB_ENV
            echo "URL_STAGING=https://events-staging.zahs.tv/pt_annotations" >> $GITHUB_ENV
 
-      -  name: Call the Action to send the release to Endpoints
+      - name: Print Environment Variables
+        run: |
+          echo "URL_PRODUCTION: $URL_PRODUCTION"
+          echo "URL_STAGING: $URL_STAGING"
+          echo "URL_PRODUCTION:" ${{env.URL_PRODUCTION}}
+          echo "URL_STAGING:" ${{env.URL_STAGING}} 
+
+      -  name: Call the Action to send the release to endpoints
          uses: zattoo/testRelease@main
          with:
           component: ${{env.RELEASE_COMPONENT}}
