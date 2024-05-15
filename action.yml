@@ -37,6 +37,7 @@ runs:
         pip install requests
 
     - name: Send Release details to endpoints
+      working-directory: ${GITHUB_WORKSPACE}/annotations/TelemetryAnnotations
       shell: bash
       env:
         component: ${{ inputs.component }}
