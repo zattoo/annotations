@@ -25,9 +25,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Check out repository
-      uses: actions/checkout@v2
-      
+ 
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -49,4 +47,4 @@ runs:
         tenantId: ${{ inputs.tenantId }}
         urlProduction: ${{ inputs.urlProduction }}
         urlStaging: ${{ inputs.urlStaging }}
-      run: python3 ${GITHUB_WORKSPACE}/annotations/TelemetryAnnotations/annotations.py
+      run: python3 TelemetryAnnotations/annotations.py
