@@ -24,6 +24,7 @@ inputs:
 
 runs:
   steps:
+
     - name: Checkout annotations repo
       uses: actions/checkout@v2
 
