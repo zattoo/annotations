@@ -25,10 +25,11 @@ inputs:
 runs:
   using: composite
   steps:
+
    - name: Checkout annotations repo
      uses: actions/checkout@v2
      with:
-      repository: zattoo/annotations
+        repository: zattoo/annotations
       
     - name: Set up Python
       uses: actions/setup-python@v2
