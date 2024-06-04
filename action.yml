@@ -45,11 +45,11 @@ runs:
     - name: Send Release details to endpoints
       shell: bash
       env:
-      component: ${{ inputs.component }}
-      date: ${{ inputs.date }}
-      version: ${{ inputs.version }}
-      type: ${{ inputs.type }}
-      tenantId: ${{ inputs.tenantId }}
-      urlProduction: ${{ inputs.urlProduction }}
-      urlStaging: ${{ inputs.urlStaging }}
+        component: ${{ inputs.component }}
+        date: ${{ inputs.date }}
+        version: ${{ inputs.version }}
+        type: ${{ inputs.type }}
+        tenantId: ${{ inputs.tenantId }}
+        urlProduction: ${{ inputs.urlProduction }}
+        urlStaging: ${{ inputs.urlStaging }}
       run: python3 TelemetryAnnotations/annotations.py
