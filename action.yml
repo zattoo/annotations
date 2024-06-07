@@ -23,6 +23,7 @@ inputs:
     required: true    
 
 runs:
+  using: composite
   steps:
 
     - name: Checkout annotations repo
